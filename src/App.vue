@@ -1,19 +1,19 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-    <button @click="increase(2,$event)">  Increase</button>
-    <button @click="restCounter">Delete</button>
-    {{counter}}
-    <label for="test">test
-    <input
-      id="test"
-      name=""
-      type="test"
-      @blur="blur"
-      @focus="focus"
-    >
-    </label>
+    <HelloWorld msg="Let's calculate!"/>
+<!--    <button @click="increase(2,$event)">  Increase</button>-->
+<!--    <button @click="restCounter">Delete</button>-->
+<!--    {{counter}}-->
+<!--    <label for="test">test-->
+<!--    <input-->
+<!--      id="test"-->
+<!--      name=""-->
+<!--      type="test"-->
+<!--      @blur="blur"-->
+<!--      @focus="focus"-->
+<!--    >-->
+<!--    </label>-->
     <CalculatorComp  />
   </div>
 </template>

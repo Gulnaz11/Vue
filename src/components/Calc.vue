@@ -14,6 +14,8 @@
     <button @click="sub">-</button>
     <button @click="div">/</button>
     <button @click="mult">*</button>
+    <button @click="pow">^</button>
+    <button @click="intDiv">//</button>
   </div>
 </div>
 </template>
@@ -36,10 +38,25 @@ export default {
     mult() {
       this.result = this.op1 * this.op2;
     },
+    pow() {
+      // eslint-disable-next-line no-restricted-properties
+      this.result = Math.pow(this.op1, this.op2);
+    },
+    intDiv() {
+      // eslint-disable-next-line radix
+      this.result = parseInt(this.op1 / this.op2);
+    },
   },
 };
 </script>
 
 <style scoped>
-
+ *{
+   padding: 2px;
+   margin: 2px;
+ }
+ button {
+   min-width: 35px;
+   height: 35px;
+ }
 </style>
