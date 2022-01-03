@@ -10,7 +10,7 @@
     = {{result}}
   </div>
   <div class="keyboard">
-    <button @click="result=op1+ op2">+</button>
+    <button @click="sum">+</button>
     <button @click="sub">-</button>
     <button @click="div">/</button>
     <button @click="mult">*</button>
@@ -29,7 +29,9 @@ export default {
     op2: 0,
   }),
   methods: {
-
+    sum() {
+      this.result = this.op1 + this.op2;
+    },
     sub() {
       this.result = this.op1 - this.op2;
     },
