@@ -29,6 +29,7 @@ export default {
     op2: 0,
   }),
   methods: {
+
     sub() {
       this.result = this.op1 - this.op2;
     },
