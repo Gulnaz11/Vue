@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Let's calculate!"/>
+    <HelloWorld msg="Let's calculate!!"/>
 <!--    <button @click="increase(2,$event)">  Increase</button>-->
 <!--    <button @click="restCounter">Delete</button>-->
 <!--    {{counter}}-->
