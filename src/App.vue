@@ -1,35 +1,21 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Let's calculate!!"/>
-<!--    <button @click="increase(2,$event)">  Increase</button>-->
-<!--    <button @click="restCounter">Delete</button>-->
-<!--    {{counter}}-->
-<!--    <label for="test">test-->
-<!--    <input-->
-<!--      id="test"-->
-<!--      name=""-->
-<!--      type="test"-->
-<!--      @blur="blur"-->
-<!--      @focus="focus"-->
-<!--    >-->
-<!--    </label>-->
-    <CalculatorComp  />
+    <MyCounter v-if="show"/>
+    <button @click="show=!show">hide / show</button>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue';
-import CalculatorComp from './components/Calc.vue';
+import MyCounter from './components/Counter.vue';
 
 export default {
   name: 'App',
   components: {
-    CalculatorComp,
-    HelloWorld,
+    MyCounter,
   },
   data: () => ({
     counter: 0,
+    show: true,
   }),
   methods: {
     increase(step, event) {
