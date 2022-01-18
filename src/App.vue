@@ -3,11 +3,12 @@
 <!--    <MyCounter v-if="show"/>-->
 <!--    <button @click="show=!show">hide / show</button>-->
     <header>
-      <div class="header">My personal costs</div>
+      <div class="header"><h1>My personal costs</h1></div>
     </header>
 
-    <main>
-       <PaymentDisplay class="PaymentDisplay" :items="paymentsList"  />
+    <main class="main">
+
+       <PaymentDisplay class="paymentDisplay" :items="paymentsList"  />
       <AddPaymentForm @add-payment="addPayment"/>
     </main>
 
@@ -70,5 +71,30 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+.wrap{
+  width:1140px;
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+nav{
+  display: flex;
+  justify-content: center;
+}
+.page-link{
+  color: black ;
+}
+.page-link:hover{
+  color: black ;
+}
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.6s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active до версии 2.1.8 */ {
+  opacity: 0;
+}
+
+.btn{
+margin-bottom: 18px;
 }
 </style>

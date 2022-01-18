@@ -1,9 +1,14 @@
 <template>
   <div>
-    <input type="text" placeholder="Amount" v-model="value">
-    <input type="text" placeholder="Type" v-model="category">
-    <input type="text" placeholder="Date" v-model="date">
-    <button @click="addPayment">Add</button>
+    <button class="btn btn-outline-dark" v-on:click="show = !show">
+      Add new coast
+    </button>
+    <transition name="fade">
+      <div v-if="show">   <input type="text" placeholder="Amount" v-model="value">
+        <input type="text" placeholder="Type" v-model="category">
+        <input type="text" placeholder="Date" v-model="date">
+        <button @click="addPayment">Add</button></div>
+    </transition>
   </div>
 </template>
 
@@ -14,6 +19,8 @@ export default {
     value: '',
     category: '',
     date: '',
+    show: false,
+    show2: true,
   }),
   methods: {
     addPayment() {
