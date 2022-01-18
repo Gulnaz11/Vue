@@ -4,10 +4,15 @@
       Add new coast
     </button>
     <transition name="fade">
-      <div v-if="show">   <input type="text" placeholder="Amount" v-model="value">
-        <input type="text" placeholder="Type" v-model="category">
-        <input type="text" placeholder="Date" v-model="date">
-        <button @click="addPayment">Add</button></div>
+      <form class="addForm" action="#" v-if="show">
+        <div class="addForm-div">
+           <input type="number" min="1" placeholder="Amount" required  v-model="value">
+           <input type="text" placeholder="Type" required v-model="category">
+           <input type="text" placeholder="Date" v-model="date">
+           <br>
+           <button class="btn btn-outline-dark" @click="addPayment">Add</button>
+        </div>
+      </form>
     </transition>
   </div>
 </template>
@@ -37,7 +42,9 @@ export default {
         category,
         date: date || paymentDay,
       };
-      this.$emit('add-payment', data);
+      if (data.category && data.value >= 1) {
+        this.$emit('add-payment', data);
+      }
     },
   },
   computed: {

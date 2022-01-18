@@ -95,6 +95,15 @@ nav{
 }
 
 .btn{
-margin-bottom: 18px;
+margin-top: 18px;
+}
+.addForm{
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+.addForm-div{
+  border: 1px solid black;
+  padding: 15px;
 }
 </style>
