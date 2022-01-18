@@ -24,8 +24,8 @@ export default {
     value: '',
     category: '',
     date: '',
+    page: '',
     show: false,
-    show2: true,
   }),
   methods: {
     addPayment() {

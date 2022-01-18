@@ -40,20 +40,25 @@ export default {
           date: '17.01.2022',
           category: 'Food',
           value: 300,
+          page: 1,
         },
         {
           date: '18.01.2022',
           category: 'Food',
           value: 500,
+          page: 1,
         },
         {
           date: '18.01.2022',
           category: 'Transport',
           value: 200,
+          page: 1,
         },
       ];
     },
     addPayment(data) {
+      // eslint-disable-next-line no-param-reassign,radix
+      data.page = parseInt(this.paymentsList.length / 4 + 1);
       this.paymentsList.push(data);
     },
   },
