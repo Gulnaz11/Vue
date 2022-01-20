@@ -19,8 +19,14 @@
             </option>
 
           </select>
+          <button @click="show2=!show2">+</button>
            <input type="text" placeholder="Date" v-model="date">
            <br>
+          <form action="#" v-show="show2">
+          <input type="text" placeholder="Add Category" v-model="newCategory">
+            <button @click="AddCategory">Add</button>
+          </form>
+          <br>
            <button class="btn btn-outline-dark" @click="addPayment">Add</button>
         </div>
       </form>
@@ -42,7 +48,9 @@ export default {
     category: '',
     date: '',
     page: '',
+    newCategory: '',
     show: false,
+    show2: false,
   }),
   methods: {
     resetData() {
@@ -67,6 +75,15 @@ export default {
       if (value > 0) {
         this.$emit('add-payment', data);
         this.resetData();
+        alert('New cost added!');
+      }
+    },
+    AddCategory() {
+      if (this.newCategory) {
+        this.$emit('add-category', this.newCategory);
+        this.show2 = false;
+        alert(`${this.newCategory} add to Category!`);
+        this.newCategory = '';
       }
     },
   },

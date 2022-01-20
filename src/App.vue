@@ -11,7 +11,10 @@
       <PaymentDisplay class="paymentDisplay" :items="paymentsList"  />
       <AddPaymentForm
         :categoryList="categoryList"
-        @add-payment="addPayment"/>
+        @add-payment="addPayment"
+        @add-category="addCategory"
+      />
+
     </main>
 
   </div>
@@ -37,7 +40,7 @@ export default {
     // paymentsList: [],
   }),
   methods: {
-    ...mapMutations(['ADD_PAYMENT_DATA']),
+    ...mapMutations(['ADD_PAYMENT_DATA', 'ADD_CATEGORY_LIST']),
     ...mapActions(['fetchData', 'fetchCategoryList']),
     // fetchData() {
     //   return [
@@ -67,6 +70,9 @@ export default {
       // data.page = parseInt(this.paymentsList.length / 4 + 1);
       // this.paymentsList.push(data);
       this.ADD_PAYMENT_DATA(data);
+    },
+    addCategory(category) {
+      this.ADD_CATEGORY_LIST(category);
     },
   },
   computed: {
