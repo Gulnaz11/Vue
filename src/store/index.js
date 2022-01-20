@@ -15,8 +15,28 @@ export default new Vuex.Store({
     },
     ADD_PAYMENT_DATA(state, payment) {
       // eslint-disable-next-line radix,no-param-reassign
-      payment.page = parseInt(state.paymentsList.length / 4 + 1);
-      state.paymentsList.push(payment);
+      const amountOfObj = Object.keys(state.paymentsList).length;
+      if (state.paymentsList[`${amountOfObj}`].length === 3) {
+        // eslint-disable-next-line no-unused-expressions
+        state.paymentsList[`${amountOfObj + 1}`] = [
+          {
+            id: amountOfObj * 3 + 1,
+            date: payment.date,
+            category: payment.category,
+            value: payment.value,
+          },
+        ];
+      } else {
+        state.paymentsList[`${amountOfObj}`].push(
+          {
+            id: amountOfObj * 3 + state.paymentsList[`${amountOfObj}`].length - 2,
+            date: payment.date,
+            category: payment.category,
+            value: payment.value,
+          },
+        );
+      }
+      // state.paymentsList.push(payment);
     },
   },
   getters: {

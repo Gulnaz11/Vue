@@ -155,4 +155,8 @@ margin-top: 18px;
 .page-item {
   text-decoration: none;
 }
+.displayTr {
+  display: contents;
+
+}
 </style>

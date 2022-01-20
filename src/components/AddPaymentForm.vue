@@ -11,7 +11,7 @@
           <select class="paymentSelect" v-model="category" required>
             <option value="" disabled selected>Category</option>
             <option
-              value="category"
+              :value="category"
               v-for="category of categoryList" :key="category"
               selected
             >

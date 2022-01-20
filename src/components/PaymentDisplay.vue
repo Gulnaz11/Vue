@@ -12,9 +12,9 @@
     </thead>
     <tbody v-for = '(object, i) in items' :key="i" >
 
-      <div v-if="i==page">
+      <div class="displayTr" v-if="i==page">
         <tr class="item-row" v-for = '(item, index) in object' :key="index">
-          <td>{{index+1}} </td>
+          <td>{{item.id}} </td>
           <td>{{ item.date}} </td>
           <td> {{item.category }} </td>
           <td>  {{item.value}} </td>
