@@ -7,7 +7,7 @@
     </header>
 
     <main class="main">
-      <div>Total: {{paymentsListTotalAmount}}</div>
+<!--      <div>Total: {{paymentsListTotalAmount}}</div>-->
       <PaymentDisplay class="paymentDisplay" :items="paymentsList"  />
       <AddPaymentForm
         :categoryList="categoryList"
@@ -147,5 +147,12 @@ margin-top: 18px;
 .addForm-div{
   border: 1px solid black;
   padding: 15px;
+}
+.paymentSelect{
+  width: 202px;
+  height: 30px;
+}
+.page-item {
+  text-decoration: none;
 }
 </style>

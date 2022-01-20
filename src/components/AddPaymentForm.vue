@@ -8,7 +8,8 @@
         <div class="addForm-div">
            <input type="number" min="1" placeholder="Value" required  v-model="value">
 <!--           <input type="text" placeholder="Type" required v-model="category">-->
-          <select v-model="category">
+          <select class="paymentSelect" v-model="category" required>
+            <option value="" disabled selected>Category</option>
             <option
               value="category"
               v-for="category of categoryList" :key="category"
@@ -60,12 +61,13 @@ export default {
       } = this;
       const data = {
         value: +value,
-        category,
+        category: category || this.categoryList[0],
         date: date || paymentDay,
       };
-
-      this.$emit('add-payment', data);
-      this.resetData();
+      if (value > 0) {
+        this.$emit('add-payment', data);
+        this.resetData();
+      }
     },
   },
   computed: {

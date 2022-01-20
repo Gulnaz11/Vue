@@ -10,15 +10,16 @@
       <th scope="col">Value</th>
     </tr>
     </thead>
-    <tbody>
-    <tr class="item-row" v-for = '(item, index) in items' :key="index">
+    <tbody v-for = '(object, i) in items' :key="i" >
 
-      <td v-show='item.page==page' class="item-row item-element">{{index+1}} </td>
-      <td v-show='item.page==page' class="item-row item-element">{{ item.date}} </td>
-      <td v-show='item.page==page' class="item-row item-element"> {{item.category }} </td>
-      <td v-show='item.page==page' class="item-row item-element">  {{item.value}} </td>
-
+      <div v-if="i==page">
+        <tr class="item-row" v-for = '(item, index) in object' :key="index">
+          <td>{{index+1}} </td>
+          <td>{{ item.date}} </td>
+          <td> {{item.category }} </td>
+          <td>  {{item.value}} </td>
     </tr>
+      </div>
     </tbody>
   </table>
     <nav aria-label="Page navigation example">
@@ -26,21 +27,13 @@
         <li class="page-item"><button @click='PreviousPage' class="page-link" >
           Previous
           </button></li>
-        <li class="page-item" v-bind:class="active[0]">
-          <button @click='Page' value="1" class="page-link">
-          1
-          </button>
-        </li>
-        <li class="page-item" v-bind:class="active[1]">
-          <button @click='Page' value='2' class="page-link">
-          2
-          </button>
-        </li>
-        <li class="page-item" v-bind:class="active[2]">
-          <button @click='Page' value='3' class="page-link">
-          3
-          </button>
-        </li>
+
+           <li v-for = '(object, i) in items' :key="i"  class="page-item" v-bind:class="active[i]">
+             <button @click='Page' :value="i" class="page-link">
+               {{ i }}
+             </button>
+           </li>
+
         <li class="page-item"><button @click='NextPage' class="page-link" >
           Next
           </button></li>
@@ -53,12 +46,12 @@
 export default {
   name: 'PaymentDisplay',
   data: () => ({
-    active: ['active'],
+    active: ['', 'active'],
     page: '1',
   }),
   props: {
     items: {
-      type: Array,
+      type: Object([]),
       default: () => ([]),
     },
     show: {
@@ -71,9 +64,10 @@ export default {
       if (this.page > 1) {
         // eslint-disable-next-line no-plusplus
         this.page--;
-        // eslint-disable-next-line no-plusplus
-        for (let i = 0; i <= 3; i++) {
-          if (i === this.page - 1) this.active[i] = 'active';
+        // eslint-disable-next-line no-plusplus,no-restricted-syntax,guard-for-in
+        for (const i in this.items) {
+          // eslint-disable-next-line eqeqeq
+          if (i == this.page) this.active[i] = 'active';
           else this.active[i] = '';
         }
       }
@@ -81,19 +75,20 @@ export default {
     Page() {
       // eslint-disable-next-line no-restricted-globals
       this.page = event.srcElement.value;
-      // eslint-disable-next-line no-plusplus
-      for (let i = 0; i <= 3; i++) {
-        if (i === this.page - 1) this.active[i] = 'active';
+      // eslint-disable-next-line no-plusplus,no-restricted-syntax,guard-for-in
+      for (const i in this.items) {
+        // eslint-disable-next-line eqeqeq
+        if (i == this.page) this.active[i] = 'active';
         else this.active[i] = '';
       }
     },
     NextPage() {
-      if (this.page < 3) {
+      if (this.page < Object.keys(this.items).length) {
         // eslint-disable-next-line no-plusplus
         this.page++;
-        // eslint-disable-next-line no-plusplus
-        for (let i = 0; i <= 3; i++) {
-          if (i === this.page - 1) this.active[i] = 'active';
+        // eslint-disable-next-line no-plusplus,no-restricted-syntax
+        for (const i in this.items) {
+          if (+i === this.page) this.active[i] = 'active';
           else this.active[i] = '';
         }
       }
