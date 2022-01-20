@@ -6,8 +6,18 @@
     <transition name="fade">
       <form class="addForm" action="#" v-if="show">
         <div class="addForm-div">
-           <input type="number" min="1" placeholder="Amount" required  v-model="value">
-           <input type="text" placeholder="Type" required v-model="category">
+           <input type="number" min="1" placeholder="Value" required  v-model="value">
+<!--           <input type="text" placeholder="Type" required v-model="category">-->
+          <select v-model="category">
+            <option
+              value="category"
+              v-for="category of categoryList" :key="category"
+              selected
+            >
+               {{category}}
+            </option>
+
+          </select>
            <input type="text" placeholder="Date" v-model="date">
            <br>
            <button class="btn btn-outline-dark" @click="addPayment">Add</button>
@@ -20,6 +30,12 @@
 <script>
 export default {
   name: 'AddPaymentForm',
+  props: {
+    categoryList: {
+      type: Array,
+      default: () => [],
+    },
+  },
   data: () => ({
     value: '',
     category: '',
@@ -28,6 +44,11 @@ export default {
     show: false,
   }),
   methods: {
+    resetData() {
+      this.value = '';
+      this.category = '';
+      this.date = '';
+    },
     addPayment() {
       // const data = {
       //   value: this.amount,
@@ -38,13 +59,13 @@ export default {
         value, category, date, paymentDay,
       } = this;
       const data = {
-        value,
+        value: +value,
         category,
         date: date || paymentDay,
       };
-      if (data.category && data.value >= 1) {
-        this.$emit('add-payment', data);
-      }
+
+      this.$emit('add-payment', data);
+      this.resetData();
     },
   },
   computed: {

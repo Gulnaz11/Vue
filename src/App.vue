@@ -7,9 +7,11 @@
     </header>
 
     <main class="main">
-
-       <PaymentDisplay class="paymentDisplay" :items="paymentsList"  />
-      <AddPaymentForm @add-payment="addPayment"/>
+      <div>Total: {{paymentsListTotalAmount}}</div>
+      <PaymentDisplay class="paymentDisplay" :items="paymentsList"  />
+      <AddPaymentForm
+        :categoryList="categoryList"
+        @add-payment="addPayment"/>
     </main>
 
   </div>
@@ -18,6 +20,7 @@
 <script>
 // import MyCounter from './components/Counter.vue';
 
+import { mapMutations, mapActions, mapGetters } from 'vuex';
 import PaymentDisplay from './components/PaymentDisplay.vue';
 import AddPaymentForm from './components/AddPaymentForm.vue';
 
@@ -29,41 +32,75 @@ export default {
     // MyCounter,
   },
   data: () => ({
-    counter: 0,
-    show: true,
-    paymentsList: [],
+    // counter: 0,
+    // show: true,
+    // paymentsList: [],
   }),
   methods: {
-    fetchData() {
-      return [
-        {
-          date: '17.01.2022',
-          category: 'Food',
-          value: 300,
-          page: 1,
-        },
-        {
-          date: '18.01.2022',
-          category: 'Food',
-          value: 500,
-          page: 1,
-        },
-        {
-          date: '18.01.2022',
-          category: 'Transport',
-          value: 200,
-          page: 1,
-        },
-      ];
-    },
+    ...mapMutations(['ADD_PAYMENT_DATA']),
+    ...mapActions(['fetchData', 'fetchCategoryList']),
+    // fetchData() {
+    //   return [
+    //     {
+    //       date: '17.01.2022',
+    //       category: 'Food',
+    //       value: 300,
+    //       page: 1,
+    //     },
+    //     {
+    //       date: '18.01.2022',
+    //       category: 'Food',
+    //       value: 500,
+    //       page: 1,
+    //     },
+    //     {
+    //       date: '18.01.2022',
+    //       category: 'Transport',
+    //       value: 200,
+    //       page: 1,
+    //     },
+    //   ];
+    // },
+    // eslint-disable-next-line no-unused-vars
     addPayment(data) {
       // eslint-disable-next-line no-param-reassign,radix
-      data.page = parseInt(this.paymentsList.length / 4 + 1);
-      this.paymentsList.push(data);
+      // data.page = parseInt(this.paymentsList.length / 4 + 1);
+      // this.paymentsList.push(data);
+      this.ADD_PAYMENT_DATA(data);
     },
   },
+  computed: {
+    ...mapGetters(['paymentsList', 'paymentsListTotalAmount', 'categoryList']),
+  },
   created() {
-    this.paymentsList = this.fetchData();
+    // this.paymentsList = this.fetchData();
+    console.log(this.$store);
+    // this.$store.dispatch('fetchData');
+    // this.SET_PAYMENTS_LIST(paymentsList);
+    this.fetchData();
+    this.fetchCategoryList();
+    // const paymentsList = [
+    //   {
+    //     date: '17.01.2022',
+    //     category: 'Food',
+    //     value: 300,
+    //     page: 1,
+    //   },
+    //   {
+    //     date: '18.01.2022',
+    //     category: 'Food',
+    //     value: 500,
+    //     page: 1,
+    //   },
+    //   {
+    //     date: '18.01.2022',
+    //     category: 'Transport',
+    //     value: 200,
+    //     page: 1,
+    //   },
+    // ];
+    // this.$store.commit('SET_PAYMENTS_LIST',paymentsList);
+    // this.$store.dispatch('fetchData');
   },
 };
 </script>
