@@ -1,5 +1,7 @@
 <template>
   <div>
+    {{routeData.value}}
+    {{routeData.category}}
     <button class="btn btn-outline-dark" v-on:click="show = !show">
       Add new coast
     </button>
@@ -41,6 +43,10 @@ export default {
     categoryList: {
       type: Array,
       default: () => [],
+    },
+    routeData: {
+      type: Object,
+      defoult: () => {},
     },
   },
   data: () => ({
@@ -96,6 +102,7 @@ export default {
       return `${day}.${month}.${year}`;
     },
   },
+
 };
 </script>
 

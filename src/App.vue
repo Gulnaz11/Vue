@@ -2,111 +2,58 @@
   <div id="app">
 <!--    <MyCounter v-if="show"/>-->
 <!--    <button @click="show=!show">hide / show</button>-->
-    <header>
-      <div class="header"><h1>My personal costs</h1></div>
+    <header class="header">
+     <nav>
+<!--       <a href="/#dashboard" class="router-link">Dashboard</a>-->
+<!--       <a href="/#about" class="router-link">About</a>-->
+<!--       <a href="/#notfound" class="router-link">NotFound</a>-->
+        <router-link class="router-link" to="dashboard">Dashboard</router-link>
+        <router-link class="router-link" to="about">About</router-link>
+
+<!--        <router-link class="router-link" to="notfound">NotFound</router-link>-->
+
+     </nav>
     </header>
-
+    <button @click="goToPage('notfound')">Go to NotFound</button>
     <main class="main">
-<!--      <div>Total: {{paymentsListTotalAmount}}</div>-->
-      <PaymentDisplay class="paymentDisplay" :items="paymentsList"  />
-      <AddPaymentForm
-        :categoryList="categoryList"
-        @add-payment="addPayment"
-        @add-category="addCategory"
-      />
-
+      <router-view/>
     </main>
 
   </div>
 </template>
 
 <script>
-// import MyCounter from './components/Counter.vue';
 
-import { mapMutations, mapActions, mapGetters } from 'vuex';
-import PaymentDisplay from './components/PaymentDisplay.vue';
-import AddPaymentForm from './components/AddPaymentForm.vue';
+// import DashboardPage from './views/Dashboard.vue';
+// import AboutPage from './views/About.vue';
+// import NotFound from './views/NotFound.vue';
 
 export default {
   name: 'App',
-  components: {
-    AddPaymentForm,
-    PaymentDisplay,
-    // MyCounter,
-  },
+  // components: { NotFound, AboutPage, DashboardPage },
   data: () => ({
-    // counter: 0,
-    // show: true,
-    // paymentsList: [],
+    page: 'dashboard',
   }),
   methods: {
-    ...mapMutations(['ADD_PAYMENT_DATA', 'ADD_CATEGORY_LIST']),
-    ...mapActions(['fetchData', 'fetchCategoryList']),
-    // fetchData() {
-    //   return [
-    //     {
-    //       date: '17.01.2022',
-    //       category: 'Food',
-    //       value: 300,
-    //       page: 1,
-    //     },
-    //     {
-    //       date: '18.01.2022',
-    //       category: 'Food',
-    //       value: 500,
-    //       page: 1,
-    //     },
-    //     {
-    //       date: '18.01.2022',
-    //       category: 'Transport',
-    //       value: 200,
-    //       page: 1,
-    //     },
-    //   ];
+    goToPage(page) {
+      this.$router.push(page);
+    },
+    // setPage() {
+    //   this.page = window.location.hash.slice(1);
+    //   console.log(this.page);
     // },
-    // eslint-disable-next-line no-unused-vars
-    addPayment(data) {
-      // eslint-disable-next-line no-param-reassign,radix
-      // data.page = parseInt(this.paymentsList.length / 4 + 1);
-      // this.paymentsList.push(data);
-      this.ADD_PAYMENT_DATA(data);
-    },
-    addCategory(category) {
-      this.ADD_CATEGORY_LIST(category);
-    },
+    // pushHistory(event) {
+    //   console.log(event);
+    //   event.preventDefault();
+    //   if (!event.target.classList.contains('router-link')) return;
+    //   window.history.pushState({}, '', event.target.href);
+    //   this.setPage();
+    // },
   },
-  computed: {
-    ...mapGetters(['paymentsList', 'categoryList']),
-  },
-  created() {
-    // this.paymentsList = this.fetchData();
-    console.log(this.$store);
-    // this.$store.dispatch('fetchData');
-    // this.SET_PAYMENTS_LIST(paymentsList);
-    this.fetchData();
-    this.fetchCategoryList();
-    // const paymentsList = [
-    //   {
-    //     date: '17.01.2022',
-    //     category: 'Food',
-    //     value: 300,
-    //     page: 1,
-    //   },
-    //   {
-    //     date: '18.01.2022',
-    //     category: 'Food',
-    //     value: 500,
-    //     page: 1,
-    //   },
-    //   {
-    //     date: '18.01.2022',
-    //     category: 'Transport',
-    //     value: 200,
-    //     page: 1,
-    //   },
-    // ];
-    // this.$store.commit('SET_PAYMENTS_LIST',paymentsList);
-    // this.$store.dispatch('fetchData');
+  mounted() {
+    // console.log(this.$route);
+    // console.log(this.$router);
+    // window.addEventListener('hashchange' , this.setPage);
   },
 };
 </script>
@@ -124,6 +71,14 @@ export default {
   width:1140px;
   box-sizing: border-box;
   margin: 0 auto;
+}
+.header{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.router-link{
+  margin: 0 5px;
 }
 nav{
   display: flex;
@@ -163,6 +118,5 @@ margin-top: 18px;
 }
 .displayTr {
   display: contents;
-
 }
 </style>
