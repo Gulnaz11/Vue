@@ -7,7 +7,7 @@ export default {
       state.categoryList = categoryList;
     },
     ADD_CATEGORY_LIST(state, categoryList) {
-      state.categoryList.push(categoryList);
+      if (!state.categoryList.includes(categoryList)) state.categoryList.push(categoryList);
     },
   },
   getters: {
@@ -15,10 +15,8 @@ export default {
   },
   actions: {
     fetchCategoryList({ commit }) {
-      setTimeout(() => {
-        const categoryList = ['Food', 'Transport', 'Education', 'Sport'];
-        commit('SET_CATEGORY_LIST', categoryList);
-      }, 1000);
+      const categoryList = ['Food', 'Transport', 'Education', 'Sport'];
+      commit('SET_CATEGORY_LIST', categoryList);
     },
   },
 };

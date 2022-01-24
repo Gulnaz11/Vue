@@ -1,7 +1,5 @@
 <template>
   <div>
-    {{routeData.value}}
-    {{routeData.category}}
     <button class="btn btn-outline-dark" v-on:click="show = !show">
       Add new coast
     </button>
@@ -11,11 +9,10 @@
            <input type="number" min="1" placeholder="Value" required  v-model="value">
 <!--           <input type="text" placeholder="Type" required v-model="category">-->
           <select class="paymentSelect" v-model="category" required>
-            <option value="" disabled selected>Category</option>
+            <option value="" disabled selected style='display:none;'>Category</option>
             <option
               :value="category"
               v-for="category of categoryList" :key="category"
-              selected
             >
                {{category}}
             </option>
@@ -44,9 +41,13 @@ export default {
       type: Array,
       default: () => [],
     },
-    routeData: {
-      type: Object,
-      defoult: () => {},
+    routeCategory: {
+      type: String,
+      defoult: '',
+    },
+    routeValue: {
+      type: Number,
+      defoult: '',
     },
   },
   data: () => ({
@@ -73,12 +74,14 @@ export default {
       const {
         value, category, date, paymentDay,
       } = this;
+
       const data = {
         value: +value,
-        category: category || this.categoryList[0],
+        category,
         date: date || paymentDay,
       };
-      if (value > 0) {
+      // eslint-disable-next-line no-undef
+      if (data.value > 0 && data.category) {
         this.$emit('add-payment', data);
         this.resetData();
         alert('New cost added!');
@@ -102,7 +105,11 @@ export default {
       return `${day}.${month}.${year}`;
     },
   },
-
+  created() {
+    this.show = this.routeCategory;
+    this.value = this.routeValue;
+    this.category = this.routeCategory;
+  },
 };
 </script>
 

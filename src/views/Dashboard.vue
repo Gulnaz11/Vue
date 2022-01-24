@@ -4,7 +4,8 @@
   <PaymentDisplay class="paymentDisplay" :items="paymentsList"  />
   <AddPaymentForm
     :categoryList="categoryList"
-    :formDate="routeObject"
+    :routeCategory="routeObject.category"
+    :routeValue="routeObject.value"
     @add-payment="addPayment"
     @add-category="addCategory"
   />
@@ -19,7 +20,10 @@ import AddPaymentForm from '@/components/AddPaymentForm.vue';
 export default {
   name: 'DashboardPage',
   data: () => ({
-    routeObject: {},
+    routeObject: {
+      category: '',
+      value: '',
+    },
   }),
   components: {
     PaymentDisplay,
@@ -41,11 +45,14 @@ export default {
   computed: {
     ...mapGetters(['paymentsList', 'categoryList']),
   },
+  beforeCreate() {
+  },
   created() {
     this.fetchData();
     this.fetchCategoryList();
-    this.routeObject.categorey = this.$route.params.category;
-    this.routeObject.value = this.$route.query.value;
+    this.routeObject.category = this.$route.params.category;
+    this.routeObject.value = +this.$route.query.value;
+    this.ADD_CATEGORY_LIST(this.routeObject.category);
   },
   mounted() {
     console.log(this.$route);
