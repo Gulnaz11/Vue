@@ -76,7 +76,7 @@ export default {
     },
   },
   computed: {
-    ...mapGetters(['paymentsList', 'paymentsListTotalAmount', 'categoryList']),
+    ...mapGetters(['paymentsList', 'categoryList']),
   },
   created() {
     // this.paymentsList = this.fetchData();

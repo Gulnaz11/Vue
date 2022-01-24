@@ -36,6 +36,7 @@ export default new Vuex.Store({
           },
         );
       }
+      console.log(state.paymentsList);
       // state.paymentsList.push(payment);
     },
   },
@@ -91,7 +92,6 @@ export default new Vuex.Store({
         commit('SET_PAYMENTS_LIST', paymentsList);
       }, 1000);
     },
-
   },
   modules: {
     category,
