@@ -1,10 +1,8 @@
 <template>
   <div>
-    <button class="btn btn-outline-dark" v-on:click="show = !show">
-      Add new coast
-    </button>
+
     <transition name="fade">
-      <form class="addForm" action="#" v-if="show">
+      <form class="addForm" action="#" >
         <div class="addForm-div">
            <input type="number" min="1" placeholder="Value" required  v-model="value">
 <!--           <input type="text" placeholder="Type" required v-model="category">-->
@@ -34,13 +32,12 @@
 </template>
 
 <script>
+
+import { mapGetters, mapMutations } from 'vuex';
+
 export default {
   name: 'AddPaymentForm',
   props: {
-    categoryList: {
-      type: Array,
-      default: () => [],
-    },
     routeCategory: {
       type: String,
       defoult: '',
@@ -60,17 +57,13 @@ export default {
     show2: false,
   }),
   methods: {
+    ...mapMutations(['ADD_PAYMENT_DATA']),
     resetData() {
       this.value = '';
       this.category = '';
       this.date = '';
     },
     addPayment() {
-      // const data = {
-      //   value: this.amount,
-      //   category: this.type,
-      //   date: this.date || this.paymentDay,
-      // };
       const {
         value, category, date, paymentDay,
       } = this;
@@ -82,7 +75,7 @@ export default {
       };
       // eslint-disable-next-line no-undef
       if (data.value > 0 && data.category) {
-        this.$emit('add-payment', data);
+        this.ADD_PAYMENT_DATA(data);
         this.resetData();
         alert('New cost added!');
       }
@@ -97,6 +90,7 @@ export default {
     },
   },
   computed: {
+    ...mapGetters(['categoryList', 'data']),
     paymentDay() {
       const currentDate = new Date();
       const day = currentDate.getDay();
@@ -106,9 +100,9 @@ export default {
     },
   },
   created() {
-    this.show = this.routeCategory;
-    this.value = this.routeValue;
-    this.category = this.routeCategory;
+  //  this.show = this.routeCategory;
+    this.value = this.data.value;
+    this.category = this.data.category;
   },
 };
 </script>

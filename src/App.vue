@@ -1,16 +1,9 @@
 <template>
   <div id="app">
-<!--    <MyCounter v-if="show"/>-->
-<!--    <button @click="show=!show">hide / show</button>-->
     <header class="header">
      <nav>
-<!--       <a href="/#dashboard" class="router-link">Dashboard</a>-->
-<!--       <a href="/#about" class="router-link">About</a>-->
-<!--       <a href="/#notfound" class="router-link">NotFound</a>-->
         <router-link class="router-link" to="dashboard">Dashboard</router-link>
         <router-link class="router-link" to="about">About</router-link>
-
-<!--        <router-link class="router-link" to="notfound">NotFound</router-link>-->
 
      </nav>
     </header>
@@ -18,42 +11,41 @@
     <main class="main">
       <router-view/>
     </main>
-
+    <ModalWindowPayment
+      v-if="showModal"
+      :settings="modalSettings"
+    />
   </div>
 </template>
 
 <script>
 
-// import DashboardPage from './views/Dashboard.vue';
-// import AboutPage from './views/About.vue';
-// import NotFound from './views/NotFound.vue';
+import ModalWindowPayment from './components/ModalWindowPayment.vue';
 
 export default {
   name: 'App',
-  // components: { NotFound, AboutPage, DashboardPage },
+  components: { ModalWindowPayment },
   data: () => ({
     page: 'dashboard',
+    showModal: false,
+    modalSettings: {},
   }),
   methods: {
     goToPage(page) {
       this.$router.push(page);
     },
-    // setPage() {
-    //   this.page = window.location.hash.slice(1);
-    //   console.log(this.page);
-    // },
-    // pushHistory(event) {
-    //   console.log(event);
-    //   event.preventDefault();
-    //   if (!event.target.classList.contains('router-link')) return;
-    //   window.history.pushState({}, '', event.target.href);
-    //   this.setPage();
-    // },
+    modalOpen(settings) {
+      this.modalSettings = settings;
+      this.showModal = true;
+    },
+    modalClose() {
+      this.showModal = false;
+      this.modalSettings = {};
+    },
   },
   mounted() {
-    // console.log(this.$route);
-    // console.log(this.$router);
-    // window.addEventListener('hashchange' , this.setPage);
+    this.$modal.EventBus.$on('show', this.modalOpen);
+    this.$modal.EventBus.$on('hide', this.modalClose);
   },
 };
 </script>
