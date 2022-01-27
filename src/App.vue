@@ -11,10 +11,12 @@
     <main class="main">
       <router-view/>
     </main>
-    <ModalWindowPayment
-      v-if="showModal"
-      :settings="modalSettings"
-    />
+    <transition name="fade">
+      <ModalWindowPayment
+        v-if="showModal"
+        :settings="modalSettings"
+      />
+    </transition>
   </div>
 </template>
 
@@ -76,6 +78,9 @@ nav{
   display: flex;
   justify-content: center;
 }
+.pagination{
+  z-index: 0;
+}
 .page-link{
   color: black ;
 }
@@ -111,4 +116,5 @@ margin-top: 18px;
 .displayTr {
   display: contents;
 }
+
 </style>

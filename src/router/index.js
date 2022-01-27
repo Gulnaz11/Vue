@@ -9,22 +9,22 @@ const router = new VueRouter({
     {
       path: '/dashboard',
       name: 'dashboard',
-      component: () => import('../views/Dashboard.vue'),
+      component: () => import(/* webpackChunkNameK: "dashboard" */ '../views/Dashboard.vue'),
     },
     {
       path: '/dashboard/:category',
       name: 'dashboard',
-      component: () => import('../views/Dashboard.vue'),
+      component: () => import(/* webpackChunkNameK: "dashboardPage" */ '../views/Dashboard.vue'),
     },
     {
       path: '/about*',
       name: 'about',
-      component: () => import('../views/About.vue'),
+      component: () => import(/* webpackChunkNameK: "about" */ '../views/About.vue'),
     },
     {
       path: '/notfound',
       name: 'notfound',
-      component: () => import('../views/NotFound.vue'),
+      component: () => import(/* webpackChunkNameK: "404" */ '../views/NotFound.vue'),
     },
     {
       path: '*',
