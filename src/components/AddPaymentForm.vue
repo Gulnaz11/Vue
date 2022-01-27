@@ -103,6 +103,7 @@ export default {
   //  this.show = this.routeCategory;
     this.value = this.data.value;
     this.category = this.data.category;
+    this.date = this.data.date;
   },
 };
 </script>

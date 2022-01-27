@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import category from './category';
-import data from './routeObject';
+import data from './SetObjToAddPaymentForm';
 
 Vue.use(Vuex);
 
@@ -39,6 +39,10 @@ export default new Vuex.Store({
       }
       console.log(state.paymentsList);
       // state.paymentsList.push(payment);
+    },
+    // eslint-disable-next-line no-shadow,no-unused-vars
+    DELETE_PAYMENT_DATA(state, payment) {
+      state.paymentsList[Math.ceil(payment.id / 3)].splice(payment.id - 1, 1);
     },
   },
   getters: {

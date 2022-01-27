@@ -8,6 +8,7 @@
       <th scope="col">Date</th>
       <th scope="col">Category</th>
       <th scope="col">Value</th>
+      <th></th>
     </tr>
     </thead>
     <tbody v-for = '(object, i) in items' :key="i" >
@@ -18,6 +19,16 @@
           <td>{{ item.date}} </td>
           <td> {{item.category }} </td>
           <td>  {{item.value}} </td>
+          <td class="contextMenu">
+            <i @click="showContextMenu(item.id)"
+               class="fas fa-ellipsis-v">
+
+            </i>
+          <div v-show="showMenu[item.id]" class="content">
+            <UpdateData class="Menu" :data="item"/>
+            <DeleteData class="Menu" :data="item"/>
+          </div>
+          </td>
     </tr>
       </div>
     </tbody>
@@ -43,11 +54,16 @@
 </template>
 
 <script>
+import UpdateData from './UpdateData.vue';
+import DeleteData from './DeleteData.vue';
+
 export default {
   name: 'PaymentDisplay',
+  components: { DeleteData, UpdateData },
   data: () => ({
     active: ['', 'active'],
     page: '1',
+    showMenu: [],
   }),
   props: {
     items: {
@@ -60,6 +76,9 @@ export default {
     },
   },
   methods: {
+    showContextMenu(id) {
+      this.showMenu[id] = !this.showMenu[id];
+    },
     PreviousPage() {
       if (this.page > 1) {
         // eslint-disable-next-line no-plusplus
@@ -97,9 +116,28 @@ export default {
 };
 </script>
 
-<style module lang="scss">
+<style  lang="scss" scoped>
 .item{
 border: 1px solid black;
 }
-
+.contextMenu{
+  position: absolute;
+  z-index: 10;
+  width: 40px;
+}
+.content{
+  position: relative;
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 3px;
+  border: 1px solid black;
+  /* top: 19px; */
+  right: 115px;
+  width: 128px;
+  font-size: 12px;
+  /* z-index: 1; */
+}
+.Menu:hover{
+  background-color: gainsboro;
+}
 </style>
