@@ -19,10 +19,8 @@
           <td>{{ item.date}} </td>
           <td> {{item.category }} </td>
           <td>  {{item.value}} </td>
-          <td class="contextMenu">
-            <i @click="showContextMenu(item.id)"
-               class="fas fa-ellipsis-v">
-
+          <td class="contextMenu" >
+            <i class="fas fa-ellipsis-v" @click="showMenu[item.id]=!showMenu[item.id]">
             </i>
           <div v-show="showMenu[item.id]" class="content">
             <UpdateData class="Menu" :data="item"/>
@@ -76,8 +74,8 @@ export default {
     },
   },
   methods: {
-    showContextMenu(id) {
-      this.showMenu[id] = !this.showMenu[id];
+    showContextMenu() {
+      this.showMenu = !this.showMenu;
     },
     PreviousPage() {
       if (this.page > 1) {
@@ -120,10 +118,13 @@ export default {
 .item{
 border: 1px solid black;
 }
+.fa-ellipsis-v:hover{
+  color: grey;
+}
 .contextMenu{
   position: absolute;
-  z-index: 10;
   width: 40px;
+  //z-index: 1;
 }
 .content{
   position: relative;
@@ -135,6 +136,7 @@ border: 1px solid black;
   right: 115px;
   width: 128px;
   font-size: 12px;
+  z-index: 10;
   /* z-index: 1; */
 }
 .Menu:hover{

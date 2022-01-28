@@ -58,7 +58,7 @@ export default {
   background-color: #fff;
   border-radius: 8px;
   padding: 8px;
-  /*z-index: 1;*/
+  z-index: 50;
 }
 
 </style>
