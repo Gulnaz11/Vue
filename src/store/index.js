@@ -42,7 +42,8 @@ export default new Vuex.Store({
     },
     // eslint-disable-next-line no-shadow,no-unused-vars
     DELETE_PAYMENT_DATA(state, payment) {
-      state.paymentsList[Math.ceil(payment.id / 3)].splice(payment.id - 1, 1);
+      const numberOfPage = Math.ceil(payment.id / 3);
+      state.paymentsList[numberOfPage].splice((payment.id - 1) - ((numberOfPage - 1) * 3), 1);
     },
   },
   getters: {
