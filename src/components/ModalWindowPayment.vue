@@ -17,6 +17,7 @@
 <script>
 import AddPaymentForm from '@/components/AddPaymentForm.vue';
 import AuthComp from '@/components/Auth.vue';
+import UpdatePaymentForm from './UpdatePaymentForm.vue';
 
 export default {
   name: 'ModalWindowAddPayment',
@@ -26,7 +27,7 @@ export default {
       default: () => ({}),
     },
   },
-  components: { AuthComp, AddPaymentForm },
+  components: { AuthComp, AddPaymentForm, UpdatePaymentForm },
 
   methods: {
     close() {

@@ -20,8 +20,8 @@ export default {
     ...mapMutations(['SET_DATA', 'ADD_CATEGORY_LIST']),
     OpenModalWindowPayment() {
       this.$modal.show({
-        title: 'Add new payment ',
-        content: 'AddPaymentForm',
+        title: 'Update payment ',
+        content: 'UpdatePaymentForm',
       });
       this.ADD_CATEGORY_LIST(this.data.category);
       this.SET_DATA(this.data);
