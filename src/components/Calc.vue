@@ -29,7 +29,7 @@
       @click="calculate(operator)"
       :title="operator"
       :key="operator"
-      name="operator"
+      :name="operator"
     >
       {{operator}}
     </button>
@@ -42,7 +42,7 @@
       <button
         v-for="number in numbers"
         :value="number"
-        name="number"
+        :name="number"
         @click="write(number)"
         :key="number"
       >
