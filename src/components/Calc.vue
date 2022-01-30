@@ -2,10 +2,10 @@
 <div>
   <div class="main">
     <label for="op1">
-      <input type="number" id="op1" v-model.number="op1">
+      <input type="number" id="op1" name="op1" v-model.number="op1">
     </label>
     <label for="op2">
-      <input type="number" id="op2" v-model.number="op2">
+      <input type="number" id="op2" name="op2" v-model.number="op2">
     </label>
     = {{result}} <br/>
 <!--    Fibonacci1 = {{fib1}} <br/>-->
@@ -29,6 +29,7 @@
       @click="calculate(operator)"
       :title="operator"
       :key="operator"
+      name="operator"
     >
       {{operator}}
     </button>
@@ -41,15 +42,16 @@
       <button
         v-for="number in numbers"
         :value="number"
+        name="number"
         @click="write(number)"
         :key="number"
       >
         {{number}}
       </button>
       <br>
-      <input type="radio" checked id="one" value=1 v-model="picked" >
+      <input type="radio" checked id="one" value=1 v-model="picked"  name="picked1">
       <label for="one">Операнд 1</label>
-      <input type="radio" id="two" value=2 v-model="picked">
+      <input type="radio" id="two" value=2 v-model="picked" name="picked2">
       <label for="two">Операнд 2</label>
     </div>
   </div>
