@@ -1,36 +1,61 @@
 <template>
   <div>
-  <table class="table">
-<!--   {{ items }} {{ $attrs}}-->
-    <thead class="thead-dark">
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Date</th>
-      <th scope="col">Category</th>
-      <th scope="col">Value</th>
-      <th></th>
-    </tr>
-    </thead>
-    <tbody v-for = '(object, i) in items' :key="i" >
+<!--  <table class="table">-->
+<!--&lt;!&ndash;   {{ items }} {{ $attrs}}&ndash;&gt;-->
+<!--    <thead class="thead-dark">-->
+<!--    <tr>-->
+<!--      <th scope="col">#</th>-->
+<!--      <th scope="col">Date</th>-->
+<!--      <th scope="col">Category</th>-->
+<!--      <th scope="col">Value</th>-->
+<!--      <th></th>-->
+<!--    </tr>-->
+<!--    </thead>-->
+<!--    <tbody v-for = '(object, i) in items' :key="i" >-->
 
-      <div class="displayTr" v-if="i==page">
-        <tr class="item-row" v-for = '(item, index) in object' :key="index">
-          <td>{{item.id}} </td>
-          <td>{{ item.date}} </td>
-          <td> {{item.category }} </td>
-          <td>  {{item.value}} </td>
-          <td class="contextMenu" >
-            <i class="fas fa-ellipsis-v" @click="showMenu[item.id]=!showMenu[item.id]">
-            </i>
+<!--      <div class="displayTr" v-if="i==page">-->
+<!--        <tr class="item-row" v-for = '(item, index) in object' :key="index">-->
+<!--          <td>{{item.id}} </td>-->
+<!--          <td>{{ item.date}} </td>-->
+<!--          <td> {{item.category }} </td>-->
+<!--          <td>  {{item.value}} </td>-->
+<!--          <td class="contextMenu" >-->
+<!--            <i class="fas fa-ellipsis-v" @click="showMenu[item.id]=!showMenu[item.id]">-->
+<!--            </i>-->
+<!--          <div v-show="showMenu[item.id]" class="content">-->
+<!--            <UpdateData class="Menu" :data="item"/>-->
+<!--            <DeleteData class="Menu" :data="item"/>-->
+<!--          </div>-->
+<!--          </td>-->
+<!--    </tr>-->
+<!--      </div>-->
+<!--    </tbody>-->
+<!--  </table>-->
+    <v-container>
+      <v-row>
+        <v-col cols="1">#</v-col>
+        <v-col cols="4">Date</v-col>
+        <v-col cols="4">Category</v-col>
+        <v-col cols="2">Value</v-col>
+      </v-row>
+      <v-row
+        v-for="(item, index) in items[1]"
+        :key="index"
+      >
+        <v-col>{{ item.id}}</v-col>
+        <v-col>{{ item.date}}</v-col>
+        <v-col>{{ item.category}}</v-col>
+        <v-col>{{ item.value}}</v-col>
+        <v-col>
+          <i class="fas fa-ellipsis-v" @click="showMenu[item.id]=!showMenu[item.id]">-->
+          </i>
           <div v-show="showMenu[item.id]" class="content">
-            <UpdateData class="Menu" :data="item"/>
-            <DeleteData class="Menu" :data="item"/>
+          <UpdateData class="Menu" :data="item"/>
+          <DeleteData class="Menu" :data="item"/>
           </div>
-          </td>
-    </tr>
-      </div>
-    </tbody>
-  </table>
+        </v-col>
+      </v-row>
+    </v-container>
     <nav aria-label="Page navigation example">
       <ul class="pagination">
         <li class="page-item"><button @click='PreviousPage' class="page-link" >
@@ -57,6 +82,7 @@ import DeleteData from './DeleteData.vue';
 
 export default {
   name: 'PaymentDisplay',
+  // eslint-disable-next-line vue/no-unused-components
   components: { DeleteData, UpdateData },
   data: () => ({
     active: ['', 'active'],

@@ -1,34 +1,45 @@
 <template>
-  <div>
+  <v-card class="text-left pa-8">
+    <v-text-field v-model="data" label="data"/>
+    <v-select
+    v-model="category"
+    :items="categoryList"
+    label="Category"
+    >
+    <v-text-field v-model="value" label="Value"/>
+    <v-btn @click="addPayment">Add</v-btn>
+    </v-select>
+  </v-card>
+<!--  <div>-->
 
-    <transition name="fade">
-      <form class="addForm" action="#" >
-        <div class="addForm-div">
-           <input type="number" min="1" placeholder="Value" required  v-model="value">
-<!--           <input type="text" placeholder="Type" required v-model="category">-->
-          <select class="paymentSelect" v-model="category" required>
-            <option value="" disabled selected style='display:none;'>Category</option>
-            <option
-              :value="category"
-              v-for="category of categoryList" :key="category"
-            >
-               {{category}}
-            </option>
+<!--    <transition name="fade">-->
+<!--      <form class="addForm" action="#" >-->
+<!--        <div class="addForm-div">-->
+<!--           <input type="number" min="1" placeholder="Value" required  v-model="value">-->
+<!--&lt;!&ndash;  <input type="text" placeholder="Type" required v-model="category">&ndash;&gt;-->
+<!--          <select class="paymentSelect" v-model="category" required>-->
+<!--            <option value="" disabled selected style='display:none;'>Category</option>-->
+<!--            <option-->
+<!--              :value="category"-->
+<!--              v-for="category of categoryList" :key="category"-->
+<!--            >-->
+<!--               {{category}}-->
+<!--            </option>-->
 
-          </select>
-          <button @click="show2=!show2">+</button>
-           <input type="text" placeholder="Date" v-model="date">
-           <br>
-          <form action="#" v-show="show2">
-          <input type="text" placeholder="Add Category" v-model="newCategory">
-            <button @click="AddCategory">Add</button>
-          </form>
-          <br>
-           <button class="btn btn-outline-dark" @click="addPayment">Add</button>
-        </div>
-      </form>
-    </transition>
-  </div>
+<!--          </select>-->
+<!--          <button @click="show2=!show2">+</button>-->
+<!--           <input type="text" placeholder="Date" v-model="date">-->
+<!--           <br>-->
+<!--          <form action="#" v-show="show2">-->
+<!--          <input type="text" placeholder="Add Category" v-model="newCategory">-->
+<!--            <button @click="AddCategory">Add</button>-->
+<!--          </form>-->
+<!--          <br>-->
+<!--           <button class="btn btn-outline-dark" @click="addPayment">Add</button>-->
+<!--        </div>-->
+<!--      </form>-->
+<!--    </transition>-->
+<!--  </div>-->
 </template>
 
 <script>

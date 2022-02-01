@@ -1,31 +1,46 @@
 <template>
-<div>
-  <div class="header"><h1>My personal costs</h1></div>
-  <PaymentDisplay class="paymentDisplay" :items="paymentsList"  />
-<!--  <ModalWindowPayment-->
-<!--    v-if="showModel"-->
-<!--    @close="paymentModelHide"-->
-<!--  />-->
-<!--  <button class="btn btn-outline-dark" v-on:click="paymentModelShow">-->
-<!--    Add Payment-->
-<!--  </button>-->
-  <button class="btn btn-outline-dark" @click="addPayment">
-    Add payment
-  </button>
-  <!--  <AddPaymentForm-->
-<!--    :categoryList="categoryList"-->
-<!--    :routeCategory="routeObject.category"-->
-<!--    :routeValue="routeObject.value"-->
-<!--    @add-payment="addPayment"-->
-<!--    @add-category="addCategory"-->
-<!--  />-->
+  <v-container>
+    <v-row>
+      <v-col>
+        <div class="text-h4 text-sm-h3">My personal costs</div>
+        <v-dialog v-modal="showModel">
+          <template v-slot:activator="{ on }">
+            <v-btn color="milk"
+            v-on="on"
+            @click="showModel = !showModel"
+            >
+               Add new payment
+              <v-icon>mdi-plus</v-icon>
+            </v-btn>
+          </template>
+          <v-card>
+            <AddPaymentForm :routeCategory="routeObject.category" :routeValue="routeObject.value"/>
+          </v-card>
+        </v-dialog>
+        <div>
+          <PaymentDisplay :items="paymentsList"/>
+        </div>
+      </v-col>
+      <v-col>
+        Graphics
+      </v-col>
+    </v-row>
+  </v-container>
+<!--<div>-->
+<!--  <div class="text-h5 text-sm-h3"><h1>My personal costs</h1></div>-->
+<!--  <PaymentDisplay class="paymentDisplay" :items="paymentsList"  />-->
 
-</div>
+<!--  <button class="btn btn-outline-dark" @click="addPayment">-->
+<!--    Add payment-->
+<!--  </button>-->
+
+<!--</div>-->
 </template>
 
 <script>
 import { mapMutations, mapActions, mapGetters } from 'vuex';
 import PaymentDisplay from '@/components/PaymentDisplay.vue';
+import AddPaymentForm from '../components/AddPaymentForm.vue';
 // import AddPaymentForm from '@/components/AddPaymentForm.vue';
 // import ModalWindowPayment from '../components/ModalWindowPayment.vue';
 
@@ -39,6 +54,7 @@ export default {
     showModel: false,
   }),
   components: {
+    AddPaymentForm,
     PaymentDisplay,
     // ModalWindowPayment,
   },
