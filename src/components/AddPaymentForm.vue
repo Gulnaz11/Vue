@@ -1,14 +1,14 @@
 <template>
   <v-card class="text-left pa-8">
-    <v-text-field v-model="data" label="data"/>
+    <v-text-field v-model="date" label="Data" />
     <v-select
     v-model="category"
     :items="categoryList"
     label="Category"
     >
-    <v-text-field v-model="value" label="Value"/>
-    <v-btn @click="addPayment">Add</v-btn>
     </v-select>
+    <v-text-field v-model="value" label="Value"/>
+    <v-btn @click="addPayment"  >Add</v-btn>
   </v-card>
 <!--  <div>-->
 
@@ -112,9 +112,10 @@ export default {
   },
   created() {
   //  this.show = this.routeCategory;
-    this.value = this.data.value;
-    this.category = this.data.category;
-    this.date = this.data.date;
+  //   this.value = this.data.value;
+  //   this.category = this.data.category;
+    this.date = this.paymentDay;
+    console.log(this.date);
   },
 };
 </script>

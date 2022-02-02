@@ -1,37 +1,7 @@
 <template>
   <div>
-<!--  <table class="table">-->
-<!--&lt;!&ndash;   {{ items }} {{ $attrs}}&ndash;&gt;-->
-<!--    <thead class="thead-dark">-->
-<!--    <tr>-->
-<!--      <th scope="col">#</th>-->
-<!--      <th scope="col">Date</th>-->
-<!--      <th scope="col">Category</th>-->
-<!--      <th scope="col">Value</th>-->
-<!--      <th></th>-->
-<!--    </tr>-->
-<!--    </thead>-->
-<!--    <tbody v-for = '(object, i) in items' :key="i" >-->
 
-<!--      <div class="displayTr" v-if="i==page">-->
-<!--        <tr class="item-row" v-for = '(item, index) in object' :key="index">-->
-<!--          <td>{{item.id}} </td>-->
-<!--          <td>{{ item.date}} </td>-->
-<!--          <td> {{item.category }} </td>-->
-<!--          <td>  {{item.value}} </td>-->
-<!--          <td class="contextMenu" >-->
-<!--            <i class="fas fa-ellipsis-v" @click="showMenu[item.id]=!showMenu[item.id]">-->
-<!--            </i>-->
-<!--          <div v-show="showMenu[item.id]" class="content">-->
-<!--            <UpdateData class="Menu" :data="item"/>-->
-<!--            <DeleteData class="Menu" :data="item"/>-->
-<!--          </div>-->
-<!--          </td>-->
-<!--    </tr>-->
-<!--      </div>-->
-<!--    </tbody>-->
-<!--  </table>-->
-    <v-container>
+    <v-container >
       <v-row>
         <v-col cols="1">#</v-col>
         <v-col cols="4">Date</v-col>
@@ -40,7 +10,7 @@
         <v-col cols="1"></v-col>
       </v-row>
       <v-row
-        v-for="(item, index) in items[1]"
+        v-for="(item, index) in items[page]"
         :key="index"
       >
         <v-col>{{ item.id}}</v-col>
@@ -69,24 +39,9 @@
         </v-menu></v-col>
 
       </v-row>
+
     </v-container>
-    <nav aria-label="Page navigation example">
-      <ul class="pagination">
-        <li class="page-item"><button @click='PreviousPage' class="page-link" >
-          Previous
-          </button></li>
-
-           <li v-for = '(object, i) in items' :key="i"  class="page-item" v-bind:class="active[i]">
-             <button @click='Page' :value="i" class="page-link">
-               {{ i }}
-             </button>
-           </li>
-
-        <li class="page-item"><button @click='NextPage' class="page-link" >
-          Next
-          </button></li>
-      </ul>
-    </nav>
+    <v-pagination v-model="page" :length="Object.keys(items).length"></v-pagination>
   </div>
 </template>
 
@@ -100,7 +55,7 @@ export default {
   components: { DeleteData, UpdateData },
   data: () => ({
     active: ['', 'active'],
-    page: '1',
+    page: 1,
     showMenu: [],
   }),
   props: {
@@ -116,39 +71,6 @@ export default {
   methods: {
     showContextMenu() {
       this.showMenu = !this.showMenu;
-    },
-    PreviousPage() {
-      if (this.page > 1) {
-        // eslint-disable-next-line no-plusplus
-        this.page--;
-        // eslint-disable-next-line no-plusplus,no-restricted-syntax,guard-for-in
-        for (const i in this.items) {
-          // eslint-disable-next-line eqeqeq
-          if (i == this.page) this.active[i] = 'active';
-          else this.active[i] = '';
-        }
-      }
-    },
-    Page() {
-      // eslint-disable-next-line no-restricted-globals
-      this.page = event.srcElement.value;
-      // eslint-disable-next-line no-plusplus,no-restricted-syntax,guard-for-in
-      for (const i in this.items) {
-        // eslint-disable-next-line eqeqeq
-        if (i == this.page) this.active[i] = 'active';
-        else this.active[i] = '';
-      }
-    },
-    NextPage() {
-      if (this.page < Object.keys(this.items).length) {
-        // eslint-disable-next-line no-plusplus
-        this.page++;
-        // eslint-disable-next-line no-plusplus,no-restricted-syntax
-        for (const i in this.items) {
-          if (+i === this.page) this.active[i] = 'active';
-          else this.active[i] = '';
-        }
-      }
     },
   },
 };

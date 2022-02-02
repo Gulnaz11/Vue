@@ -7,7 +7,6 @@
           <template v-slot:activator="{ on }">
             <v-btn color="milk"
             v-on="on"
-            @click="showModel = !showModel"
             >
                Add new payment
               <v-icon>mdi-plus</v-icon>
