@@ -1,9 +1,15 @@
 <template>
-  <div @click="DeleteData"><i class="fas fa-trash-alt"></i>Удалить</div>
+  <v-btn class="MenuBtn" @click="DeleteData">
+    <v-icon>{{ icons.mdiDelete }}</v-icon>
+    Удалить
+  </v-btn>
 </template>
 
 <script>
 import { mapMutations } from 'vuex';
+import {
+  mdiDelete,
+} from '@mdi/js';
 
 export default {
   name: 'DeleteData',
@@ -12,6 +18,13 @@ export default {
       type: Object,
       default: () => ({}),
     },
+  },
+  data() {
+    return {
+      icons: {
+        mdiDelete,
+      },
+    };
   },
   methods: {
     ...mapMutations(['DELETE_PAYMENT_DATA']),

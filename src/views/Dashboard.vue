@@ -3,7 +3,7 @@
     <v-row>
       <v-col>
         <div class="text-h4 text-sm-h3">My personal costs</div>
-        <v-dialog v-modal="showModel">
+        <v-dialog v-model="showModel">
           <template v-slot:activator="{ on }">
             <v-btn color="milk"
             v-on="on"
@@ -13,7 +13,10 @@
             </v-btn>
           </template>
           <v-card>
-            <AddPaymentForm :routeCategory="routeObject.category" :routeValue="routeObject.value"/>
+            <AddPaymentForm
+              :routeCategory="routeObject.category"
+              :routeValue="routeObject.value"
+            />
           </v-card>
         </v-dialog>
         <div>

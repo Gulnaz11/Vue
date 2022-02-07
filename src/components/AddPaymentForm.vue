@@ -7,6 +7,15 @@
     label="Category"
     >
     </v-select>
+    <v-dialog v-model="dialog"  width="500">
+      <template v-slot:activator="{ on }">
+        <v-btn  v-on="on" ><v-icon>mdi-plus</v-icon></v-btn>
+      </template>
+    <v-card>
+      <v-text-field v-model="newCategory"/>
+
+    </v-card>  <v-btn @click="AddCategory"> Add category </v-btn>
+    </v-dialog>
     <v-text-field v-model="value" label="Value"/>
     <v-btn @click="addPayment"  >Add</v-btn>
   </v-card>
@@ -64,11 +73,10 @@ export default {
     date: '',
     page: '',
     newCategory: '',
-    show: false,
-    show2: false,
+    dialog: false,
   }),
   methods: {
-    ...mapMutations(['ADD_PAYMENT_DATA']),
+    ...mapMutations(['ADD_PAYMENT_DATA', 'ADD_CATEGORY_LIST']),
     resetData() {
       this.value = '';
       this.category = '';
@@ -87,14 +95,15 @@ export default {
       // eslint-disable-next-line no-undef
       if (data.value > 0 && data.category) {
         this.ADD_PAYMENT_DATA(data);
+        this.$parent.showModel = false;
         this.resetData();
         alert('New cost added!');
       }
     },
     AddCategory() {
       if (this.newCategory) {
-        this.$emit('add-category', this.newCategory);
-        this.show2 = false;
+        this.ADD_CATEGORY_LIST(this.newCategory);
+        this.dialog = false;
         alert(`${this.newCategory} add to Category!`);
         this.newCategory = '';
       }

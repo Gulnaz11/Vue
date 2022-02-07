@@ -32,8 +32,8 @@
               <v-icon color="black">mdi-dots-vertical</v-icon>
             </v-btn>
           </template>
-          <v-list>
-            <UpdateData class="Menu" :data="item"/>
+          <v-list class="content">
+            <UpdateData class="Menu" :item="item"/>
             <DeleteData class="Menu" :data="item"/>
           </v-list>
         </v-menu></v-col>
@@ -83,25 +83,18 @@ border: 1px solid black;
 .fa-ellipsis-v:hover{
   color: grey;
 }
-.contextMenu{
-  position: absolute;
-  width: 40px;
-  //z-index: 1;
-}
 .content{
-  position: relative;
-  background-color: #fff;
-  border-radius: 8px;
-  padding: 3px;
-  border: 1px solid black;
-  /* top: 19px; */
-  right: 115px;
-  width: 128px;
-  font-size: 12px;
-  z-index: 10;
-  /* z-index: 1; */
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  gap: 10px;
+  justify-content: center;
 }
 .Menu:hover{
   background-color: gainsboro;
+}
+.MenuBtn{
+  font-size: 13px;
+  height: 26px !important;
 }
 </style>

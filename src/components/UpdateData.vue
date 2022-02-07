@@ -1,21 +1,43 @@
 <template>
-<div @click="OpenModalWindowPayment">
-  <i class="fas fa-pen-alt"></i>
-  Редактировать
-</div>
+  <v-dialog>
+    <template v-slot:activator="{ on }">
+      <v-btn class="MenuBtn" color="milk"
+             v-on="on"
+      >
+        <v-icon>{{ icons.mdiPencil }}</v-icon>
+        Редактировать
+      </v-btn>
+    </template>
+    <v-card>
+     <UpdatePaymentForm :item="item"/>
+    </v-card>
+  </v-dialog>
 </template>
 
 <script>
 import { mapMutations } from 'vuex';
+import {
+  mdiPencil,
+} from '@mdi/js';
+import UpdatePaymentForm from './UpdatePaymentForm.vue';
 
 export default {
   name: 'UpdateData',
+  // eslint-disable-next-line vue/no-unused-components
+  components: { UpdatePaymentForm },
+
   props: {
-    data: {
+    item: {
       type: Object,
       default: () => ({}),
     },
   },
+  data: () => ({
+    showModal: false,
+    icons: {
+      mdiPencil,
+    },
+  }),
   methods: {
     ...mapMutations(['SET_DATA', 'ADD_CATEGORY_LIST']),
     OpenModalWindowPayment() {
@@ -33,5 +55,9 @@ export default {
 <style scoped>
 .fa-pen-alt{
   padding: 5px;
+}
+.MenuBtn{
+  font-size: 13px;
+  height: 26px !important;
 }
 </style>
