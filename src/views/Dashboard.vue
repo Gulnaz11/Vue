@@ -12,7 +12,7 @@
               <v-icon>mdi-plus</v-icon>
             </v-btn>
           </template>
-          <v-card>
+          <v-card v-if="$route.params.category">
             <AddPaymentForm
               :routeCategory="routeObject.category"
               :routeValue="routeObject.value"

@@ -122,7 +122,8 @@ export default {
   created() {
   //  this.show = this.routeCategory;
   //   this.value = this.data.value;
-  //   this.category = this.data.category;
+    if (this.routeValue) this.value = this.routeValue;
+    this.category = this.routeCategory;
     this.date = this.paymentDay;
     console.log(this.date);
   },
