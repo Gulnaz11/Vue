@@ -12,7 +12,7 @@
               <v-icon>mdi-plus</v-icon>
             </v-btn>
           </template>
-          <v-card v-if="$route.params.category">
+          <v-card >
             <AddPaymentForm
               :routeCategory="routeObject.category"
               :routeValue="routeObject.value"
@@ -24,7 +24,7 @@
         </div>
       </v-col>
       <v-col>
-        Graphics
+        <ChartComp/>
       </v-col>
     </v-row>
   </v-container>
@@ -41,13 +41,22 @@
 
 <script>
 import { mapMutations, mapActions, mapGetters } from 'vuex';
+// import { Pie, mixins } from 'vue-chartjs';
 import PaymentDisplay from '@/components/PaymentDisplay.vue';
 import AddPaymentForm from '../components/AddPaymentForm.vue';
+import ChartComp from '../components/Chart.vue';
+// import ChartComp from '../components/Chart';
+// import BarChart from '../charts/BarChart';
+
+//
+// const { reactiveProp } = mixins;
 // import AddPaymentForm from '@/components/AddPaymentForm.vue';
 // import ModalWindowPayment from '../components/ModalWindowPayment.vue';
 
 export default {
   name: 'DashboardPage',
+  // extends: Pie,
+  // mixins: [reactiveProp],
   data: () => ({
     routeObject: {
       category: '',
@@ -56,8 +65,11 @@ export default {
     showModel: false,
   }),
   components: {
+    // ChartComp,
+    // BarChart,
     AddPaymentForm,
     PaymentDisplay,
+    ChartComp,
     // ModalWindowPayment,
   },
   props: {
@@ -109,6 +121,7 @@ export default {
     this.SET_DATA(this.routeObject);
   },
   mounted() {
+    // this.renderChart(this.paymentsList);
     // console.log(this.$route);
     // console.log(this.$modal);
     this.$modal.show({});

@@ -90,7 +90,7 @@ export default new Vuex.Store({
           {
             id: 2,
             date: '21.03.2020',
-            category: 'Navigation',
+            category: 'Food',
             value: 50,
           },
           {
@@ -104,7 +104,7 @@ export default new Vuex.Store({
           {
             id: 4,
             date: '23.03.2020',
-            category: 'Entertaiment',
+            category: 'Food',
             value: 969,
           },
           {
