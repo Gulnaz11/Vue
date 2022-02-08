@@ -5,14 +5,9 @@ const { reactiveProp } = mixins;
 export default {
   name: 'PieChart',
   extends: Pie,
-  props: {
-    chartData: {
-      type: Object,
-      default: {},
-    },
-  },
+  props: ['options'],
   mixins: [reactiveProp],
   mounted() {
-    this.renderChart(this.chartData, reactiveProp);
+    this.renderChart(this.chartData, this.options);
   },
 };

@@ -57,7 +57,6 @@ export default {
           label: 'Payments',
           backgroundColor: this.colors,
           data: this.paymentValue,
-          hoverOffset: this.categoryList.length,
         },
       ],
     };
