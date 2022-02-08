@@ -13,6 +13,6 @@ export default {
   },
   mixins: [reactiveProp],
   mounted() {
-    this.renderChart(this.chartData);
+    this.renderChart(this.chartData, reactiveProp);
   },
 };

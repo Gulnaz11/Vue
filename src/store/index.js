@@ -13,7 +13,6 @@ export default new Vuex.Store({
   mutations: {
     SET_PAYMENTS_LIST(state, paymentsList) {
       state.paymentsList = paymentsList;
-      console.log(paymentsList);
     },
     ADD_PAYMENT_DATA(state, payment) {
       // eslint-disable-next-line radix,no-param-reassign
@@ -23,7 +22,6 @@ export default new Vuex.Store({
       for (let i = 1; i <= amountOfPages; i++) {
         amountOfElements += Object.keys(state.paymentsList[i]).length;
       }
-      console.log(amountOfElements);
       if (state.paymentsList[`${amountOfPages}`].length === state.CountPaymentOnOnePage) {
         // eslint-disable-next-line no-unused-expressions
         state.paymentsList[`${amountOfPages + 1}`] = [
@@ -44,15 +42,10 @@ export default new Vuex.Store({
           },
         );
       }
-      // console.log(state.paymentsList);
-      // state.paymentsList.push(payment);
     },
     UPDATE_PAYMENT_DATA(state, payment) {
-      console.log(payment);
       const numberOfPage = Math.ceil(payment.id / state.CountPaymentOnOnePage);
       const numberOfElemenOnPage = payment.id - numberOfPage;
-      console.log(numberOfPage);
-      console.log(numberOfElemenOnPage);
       state.paymentsList[numberOfPage][numberOfElemenOnPage].value = payment.value;
       state.paymentsList[numberOfPage][numberOfElemenOnPage].data = payment.data;
       state.paymentsList[numberOfPage][numberOfElemenOnPage].category = payment.category;
@@ -112,12 +105,6 @@ export default new Vuex.Store({
             date: '24.03.2020',
             category: 'Education',
             value: 1500,
-          },
-          {
-            id: 6,
-            date: '25.03.2020',
-            category: 'Food',
-            value: 200,
           },
         ],
       };

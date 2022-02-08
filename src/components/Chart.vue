@@ -18,7 +18,7 @@ export default {
   data: () => ({
     colors: [],
     datacollection: {},
-    paymentValue: [0, 0, 0, 0],
+    paymentValue: [],
   }),
   methods: {
     getRandomInt() {
@@ -33,6 +33,7 @@ export default {
     // eslint-disable-next-line no-plusplus
     for (let i = 0; i < this.categoryList.length; i++) {
       this.colors.push(this.getRandomInt());
+      this.paymentValue[i] = 0;
     }
     const amountOfPages = Object.keys(this.paymentsList).length;
     // eslint-disable-next-line no-unused-vars
@@ -48,7 +49,7 @@ export default {
         });
       }
     }
-
+    this.categoryList.splice(this.categoryList.length - 1, 1);
     this.datacollection = {
       labels: this.categoryList,
       datasets: [

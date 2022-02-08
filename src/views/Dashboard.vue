@@ -20,7 +20,7 @@
           </v-card>
         </v-dialog>
         <div>
-          <PaymentDisplay :items="paymentsList"/>
+          <PaymentDisplay />
         </div>
       </v-col>
       <v-col>

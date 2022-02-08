@@ -10,7 +10,7 @@
         <v-col cols="1"></v-col>
       </v-row>
       <v-row
-        v-for="(item, index) in items[page]"
+        v-for="(item, index) in paymentsList[page]"
         :key="index"
       >
         <v-col>{{ item.id}}</v-col>
@@ -41,11 +41,12 @@
       </v-row>
 
     </v-container>
-    <v-pagination v-model="page" :length="Object.keys(items).length"></v-pagination>
+    <v-pagination v-model="page" :length="Object.keys(paymentsList).length"></v-pagination>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import UpdateData from './UpdateData.vue';
 import DeleteData from './DeleteData.vue';
 
@@ -59,10 +60,6 @@ export default {
     showMenu: [],
   }),
   props: {
-    items: {
-      type: Object([]),
-      default: () => ([]),
-    },
     show: {
       type: Boolean,
       default: false,
@@ -72,6 +69,9 @@ export default {
     showContextMenu() {
       this.showMenu = !this.showMenu;
     },
+  },
+  computed: {
+    ...mapGetters(['paymentsList']),
   },
 };
 </script>
