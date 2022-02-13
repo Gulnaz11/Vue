@@ -37,7 +37,6 @@ export default {
     }
     const amountOfPages = Object.keys(this.paymentsList).length;
     // eslint-disable-next-line no-unused-vars
-
     // eslint-disable-next-line no-plusplus
     for (let i = 1; i <= amountOfPages; i++) {
       // eslint-disable-next-line no-plusplus
