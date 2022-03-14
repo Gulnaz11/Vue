@@ -27,6 +27,12 @@ const router = new VueRouter({
       component: () => import(/* webpackChunkNameK: "404" */ '../views/NotFound.vue'),
     },
     {
+      path: '/',
+      redirect: {
+        name: 'dashboard',
+      },
+    },
+    {
       path: '*',
       redirect: {
         name: 'notfound',
